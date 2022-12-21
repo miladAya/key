@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.HomeActivity">
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_40ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startPlaying_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appName"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="@string/start_playing"
+        android:background="@drawable/home_button"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/settings_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_20ssp"
+
+        app:layout_constraintTop_toBottomOf="@id/startPlaying_btn"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/home_button"
+        android:text="@string/settings"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/settings_btn"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textSize="@dimen/_20ssp"
+        android:background="@drawable/home_button"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="@string/log_out"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
