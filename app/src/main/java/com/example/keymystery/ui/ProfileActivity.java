@@ -1,14 +1,18 @@
 package com.example.keymystery.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.keymystery.R;
 import com.example.keymystery.database.User;
@@ -32,9 +36,19 @@ String  userName;
         super.onCreate(savedInstanceState);
         binding=ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.Tb);
-        setTitle("");
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.your_account);
+
+        }
+
+
+
+        viewModel=new ViewModelProvider(this).get(ViewModel.class);
+
+
 
      binding.birthDateLout.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -59,14 +73,7 @@ String  userName;
 
 
      });
-     binding.countryLout.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-         CountryCodePicker countryCodePicker=new CountryCodePicker(ProfileActivity.this);
-         countryCodePicker.getSelectedCountryName();
 
-         }
-     });
 
         binding.nameLout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,24 +88,41 @@ String  userName;
        public void onClick(View view) {
           ProfileEmailFragment profileEmailFragment=new ProfileEmailFragment();
           profileEmailFragment.show(getSupportFragmentManager(),"email");
+           String email=binding.emailUser.getText().toString();
+          validateEmail(email);
+       }
+   });
+   binding.Tb.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           insertData();
        }
    });
 
-//    insertData();
-
 
     }
-//
-//    private void insertData() {
-//        String userName =binding.nameUser.getText().toString();
-//        String userEmail =binding.emailUser.getText().toString();
-//        Boolean userGender =Boolean.parseBoolean(binding.nameUser.getText().toString());
-//        String userCountry =binding.countryUser.getText().toString();
-//        String userBirth =binding.birthDateUser.getText().toString();
-//        User user=new User(userName,userEmail,userGender,userCountry,userBirth);
-//        viewModel=new ViewModelProvider(this).get(ViewModel.class);
-//        viewModel.insertUsers(user);
-//    }
+
+
+
+
+    public boolean validateEmail(String emil){
+        if (Patterns.EMAIL_ADDRESS.matcher(emil).matches()){
+            return true;
+        }else {
+            binding.emailUser.setError("Invalid Email");
+            return false;
+        }}
+
+
+    private void insertData() {
+        String userName =binding.nameUser.getText().toString();
+        String userEmail =binding.emailUser.getText().toString();
+        Boolean userGender =Boolean.parseBoolean(binding.nameUser.getText().toString());
+        String userCountry =binding.countryUser.getSelectedItem().toString();
+        String userBirth =binding.birthDateUser.getText().toString();
+        User user=new User(userName,userEmail,userGender,userCountry,userBirth);
+            viewModel.insertUsers(user);
+    }
 
 
 
@@ -110,9 +134,28 @@ String  userName;
     }
 
     @Override
+    public void onBackPressed() {
+        insertData();
+        finish();
+    }
+
+    @Override
     public void sendEmail(String email) {
         binding.emailUser.setText(email);
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                insertData();
+                finish();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);}
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 
 }

@@ -15,11 +15,21 @@ public class ViewModel extends AndroidViewModel {
         super(application);
         repository=new Repository(application);
 
+
     }
     public void insertUsers(User user){
-     repository.insertUsers(user);
+     repository.insertUser(user);
     }
-    LiveData<List<User>> getAllUsersData(){
+  public   LiveData<List<User>> getAllUsersData(){
         return repository.getAllUsersData();
     }
-}
+
+    LiveData<List<Level>> getAllLevelData(){
+        return  repository.getAllLevelData();
+    }
+    public void insertLevelData(Level level) {
+        repository.insertLevelData(level);
+    }
+
+
+    }

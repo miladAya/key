@@ -13,15 +13,7 @@
         android:background="@drawable/toolbar"
 
         >
-        <TextView
-            android:id="@+id/back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your account"
-            android:drawableStart="@drawable/ic_arrow"
-            android:textSize="@dimen/_20sdp"
-            android:drawablePadding="@dimen/_10sdp"
-            android:textColor="@color/black"/>
+
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -57,7 +49,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/_20sdp"
-                android:text="Your name  "
+                android:text="@string/your_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
 
@@ -68,7 +60,7 @@
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:paddingStart="@dimen/_20sdp"
                 android:paddingBottom="@dimen/_10sdp"
-                android:text="Anonymous user"
+                android:text="@string/anonymous_user"
                 android:textSize="@dimen/_20ssp" />
         </LinearLayout>
     </LinearLayout>
@@ -103,7 +95,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/_20sdp"
-                android:text="Your email  "
+                android:text="@string/your_email"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
 
@@ -149,7 +141,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/_20sdp"
-                android:text="Your Birth Date  "
+                android:text="@string/your_birth_date"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
 
@@ -160,7 +152,7 @@
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:paddingStart="@dimen/_20sdp"
                 android:paddingBottom="@dimen/_10sdp"
-                android:text="Anonymous user"
+                android:text="@string/anonymous_user"
                 android:textSize="@dimen/_20ssp" />
         </LinearLayout>
     </LinearLayout>
@@ -197,18 +189,21 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/_20sdp"
-                android:text="Your country  "
+                android:text="@string/your_country"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
 
-            <TextView
+            <Spinner
                 android:id="@+id/countryUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:paddingStart="@dimen/_20sdp"
                 android:paddingBottom="@dimen/_10sdp"
-                android:text="Not displayed"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/not_displayed"
+                android:entries="@array/countries"
+
                 android:textSize="@dimen/_20ssp" />
         </LinearLayout>
     </LinearLayout>
@@ -231,7 +226,7 @@
             android:layout_marginTop="10dp"
             android:paddingStart="@dimen/_20sdp"
             android:paddingEnd="@dimen/_10sdp"
-            android:text="Gender"
+            android:text="@string/gender"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
@@ -255,7 +250,7 @@ android:buttonTint="@color/yalow"
                 android:layout_marginStart="@dimen/_30sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
-                android:hint="@string/male" />
+            android:text="@string/male"/>
 
             <RadioButton
                 android:id="@+id/radioButton4"
@@ -263,7 +258,6 @@ android:buttonTint="@color/yalow"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/_20sdp"
-                android:backgroundTint="@color/yalow"
                 android:text="@string/female"
                 android:buttonTint="@color/yalow"
                 />

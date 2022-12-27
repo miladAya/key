@@ -14,9 +14,17 @@
         android:theme="@style/Theme.KeyMystery"
         tools:targetApi="31">
         <service
+            android:name=".MyIntentService"
+            android:exported="false"></service>
+
+        <activity
+            android:name=".ui.LevelActivity"
+            android:exported="false" />
+
+        <service
             android:name=".SoundService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".ui.LevelsActivity"

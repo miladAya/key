@@ -8,11 +8,9 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface UserDao {
+public interface LevelDao {
     @Insert
-    void  insertUser (User user);
-
-
-    @Query("select * from User")
-    LiveData<List<User>>getAllUsersData();
+    void  insertLevel (Level level);
+    @Query("select * from Level  ")
+    LiveData<List<Level>> getAllLevelsData();
 }

@@ -2,16 +2,20 @@ package com.example.keymystery.database;
 
 import android.content.Context;
 
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Level.class}, version = 5, exportSchema = false)
 abstract class DataBase extends RoomDatabase {
 
     public abstract UserDao userDao();
+    public abstract LevelDao levelDao();
+
 
     private static volatile DataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -23,7 +27,7 @@ abstract class DataBase extends RoomDatabase {
             synchronized (DataBase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    DataBase.class, "word_database")
+                                    DataBase.class, "user_database")
                             .build();
                 }
             }

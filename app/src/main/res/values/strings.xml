@@ -9,19 +9,43 @@
     <string name="enter_your_email">enter your email</string>
     <string name="enter_your_birth_day">enter your birth day</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
     </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="your_account">Your account</string>
+    <string name="your_name">your name</string>
+    <string name="anonymous_user">Anonymous user</string>
+    <string name="your_birth_date">Your Birth Date</string>
+    <string name="your_country">Your country</string>
+    <string name="not_displayed" translatable="false">Not displayed</string>
+    <string name="gender">Gender</string>
+    <string name="my_account">My account</string>
+    <string name="user">user</string>
+    <string name="sounds">sounds</string>
+    <string name="notification">Notification</string>
+    <string name="re_set">Re-Set</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="your_email">Your email</string>
+    <string-array name="countries">
+        <item>Not displayed</item>
+        <item>Palestine</item>
+        <item>Jordan</item>
+        <item>Egypt</item>
+        <item>Lebanon</item>
+        <item>Syrian Arab Republic</item>
+        <item>Iraq</item>
+    </string-array>
 </resources>

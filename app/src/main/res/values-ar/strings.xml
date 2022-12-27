@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مفتاح اللغز</string>
+    <string name="start_playing">ابدا اللعب</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="male">ذكر</string>
+    <string name="settings">الاعدادات</string>
+
+    <string name="female">انثي</string>
+    <string name="enter_your_user_name">ادخل اسم المستخدم</string>
+    <string name="enter_your_email">ادخل بريدك الالكتروني</string>
+    <string name="enter_your_birth_day">ادخل تاريخ ميلادك</string>
+    <string name="your_account">حسابك</string>
+    <string name="your_name">اسمك</string>
+    <string name="anonymous_user">مستخدم مجهول</string>
+    <string name="your_birth_date">تاريخ ميلادك</string>
+    <string name="your_country">بلدك</string>
+    <string name="gender">الجنس</string>
+    <string name="my_account">حسابك</string>
+    <string name="user">المستخدم</string>
+    <string name="sounds">الاصوات</string>
+    <string name="notification">الاشعارات</string>
+    <string name="re_set">اعادة تعيين</string>
+    <string name="save">حفظ</string>
+
+    <string name="your_email">بريدك الالكتروني</string>
+    <string name="cancel">الغاء</string>
+    <string-array name="countries">
+        <item>غير محدد</item>
+        <item>فلسطين</item>
+        <item>الاردن</item>
+        <item>مصر</item>
+        <item>لبنان</item>
+        <item>الجمهورية العربية السورية</item>
+        <item>العراق</item>
+    </string-array>
+</resources>

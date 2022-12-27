@@ -10,13 +10,12 @@ import java.util.Date;
 @Entity
 
 public class User {
-    @PrimaryKey
-    @NonNull
     String userName;
+@NonNull
+@PrimaryKey
     String email;
     boolean gender;
     String country;
-
     String birthDate;
 
     public String getUserName() {

@@ -1,41 +1,34 @@
 package com.example.keymystery.ui;
 
+import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
+
 import com.example.keymystery.R;
 
-public class SoundService extends Service {
-    MediaPlayer player;
 
-    public SoundService() {
-    }
+public class SoundService extends Service {
+
+MediaPlayer mediaPlayer;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
-        player=MediaPlayer.create(this, R.raw.sound);
-        if(player!= null)
-            player.setLooping(true);
+        mediaPlayer=MediaPlayer.create(this, R.raw.sound);
 
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        player.stop();
-        //حتى يكون في حاله الاستعداد قبل او بعد التوقف
-        player.release();
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-         player.start();
-         return START_STICKY;
-//        return super.onStartCommand(intent, flags, startId);
-
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
     @Override
@@ -43,4 +36,15 @@ public class SoundService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    @Override
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+         super.onStartCommand(intent, flags, startId);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+        return START_STICKY;
+
+    }
+
+
 }
