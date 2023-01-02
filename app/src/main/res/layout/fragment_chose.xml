@@ -1,74 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ChoseFragment"
-    android:background="@color/yalow">
+    tools:context=".ui.ChoseFragment">
 
-<TextView
-    android:id="@+id/questionTv"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginHorizontal="@dimen/_10sdp"
-    android:layout_marginTop="@dimen/_50sdp"
-    android:textSize="@dimen/_30sdp"
-    android:textColor="@color/white"
-    />
+    <TextView
+        android:id="@+id/questionTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_30sdp"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/answer1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/questionTv"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:background="@drawable/button"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_40sdp"
 
-        android:background="@drawable/button"
-        />
+        app:layout_constraintTop_toBottomOf="@id/questionTv" />
+
     <androidx.appcompat.widget.AppCompatButton
-android:id="@+id/answer2"
+        android:id="@+id/answer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/questionTv"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:background="@drawable/button"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/_40sdp"
-app:layout_constraintStart_toEndOf="@id/answer1"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_40sdp"
-        android:background="@drawable/button"
-        />
+        app:layout_constraintStart_toEndOf="@id/answer1"
+        app:layout_constraintTop_toBottomOf="@id/questionTv" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/answer3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/answer1"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/button"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_40sdp"
-        android:background="@drawable/button"
-        />
+        app:layout_constraintTop_toBottomOf="@id/answer1" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/answer4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/answer2"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:background="@drawable/button"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/_40sdp"
         app:layout_constraintStart_toEndOf="@id/answer3"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_40sdp"
-        android:background="@drawable/button"
-        />
+        app:layout_constraintTop_toBottomOf="@id/answer2" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/skip"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_50sdp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/skip"-->
+<!--        android:textSize="@dimen/_20ssp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/answer4" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/continueTv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_50sdp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/skip"-->
+
+<!--        android:textSize="@dimen/_20ssp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/answer4" />-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="@dimen/_5sdp"-->
+<!--        app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--        android:max="100"-->
+<!--        android:progress="100"-->
+<!--        android:progressDrawable="@drawable/custom_progres_bar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

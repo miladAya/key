@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.example.keymystery.R;
-import com.example.keymystery.database.Level;
+//import com.example.keymystery.database.Question;
+import com.example.keymystery.database.Levels;
+import com.example.keymystery.database.Question;
 import com.example.keymystery.database.ViewModel;
 import com.example.keymystery.databinding.ActivityHomeBinding;
 import com.example.keymystery.model.AppUtility;
@@ -18,8 +19,6 @@ import com.example.keymystery.model.AppUtility;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 ActivityHomeBinding binding;
@@ -71,11 +70,14 @@ ViewModel viewModel;
                     JSONObject level = new JSONObject(item);
                     int level_no =level.getInt("level_no");
                     int unlock_points =level.getInt("unlock_points");
+                    Levels levels=new Levels(level_no,unlock_points);
+//                    viewModel.insertLevels(levels);
                     JSONArray questionLevelOne =level.getJSONArray("questions");
                     for (int j = 0; j < questionLevelOne.length(); j++) {
                         String itemLevelOne = questionLevelOne.get(j).toString();
                         JSONObject jsonLevelOne = new JSONObject(itemLevelOne);
                         int id =jsonLevelOne.getInt("id");
+                        Log.d("lkl", "parseJsonFromAssets: " +id);
                         String title=jsonLevelOne.getString("title");
                         String answer_1=jsonLevelOne.getString("answer_1");
                         String answer_2=jsonLevelOne.getString("answer_2");
@@ -83,20 +85,14 @@ ViewModel viewModel;
                         String answer_4=jsonLevelOne.getString("answer_4");
                         String true_answer=jsonLevelOne.getString("true_answer");
                         int points=jsonLevelOne.getInt("points");
-//                    Log.d("TAG", "parseJsonFromAssets: " + points);
-                        int duration=jsonLevelOne.getInt("duration");
+                        Long duration=jsonLevelOne.getLong("duration");
                         JSONObject pattern=   jsonLevelOne.getJSONObject("pattern");
                         int pattern_id =  pattern.getInt("pattern_id");
                         String  pattern_name=pattern.getString("pattern_name");
-                        Level.Pattern pattern1=new Level.Pattern(pattern_id,pattern_name);
                         String  hint =jsonLevelOne.getString("hint");
-                        Level.Question question=new Level.Question(id,title,answer_1,answer_2,answer_3,answer_4,true_answer,points,duration,pattern1,hint);
-                        ArrayList<Level.Question> questions=new ArrayList<>();
-                        Level levelData=new Level(level_no,unlock_points,questions);
-                        Log.d("TAG", "parseJsonFromAssets: " +levelData);
-                        viewModel.insertLevelData(levelData);
-
-
+                        Question question=new Question(id,level_no,title,answer_1,answer_2,answer_3,answer_4,true_answer,points,duration,hint,pattern_id,pattern_name);
+                        viewModel.insertLevels(levels);
+                        viewModel.insertQuestion(question);
                     }
 
                 }}

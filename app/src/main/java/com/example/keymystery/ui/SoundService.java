@@ -12,7 +12,8 @@ import androidx.annotation.Nullable;
 import com.example.keymystery.R;
 
 
-public class SoundService extends Service {
+public class
+SoundService extends Service {
 
 MediaPlayer mediaPlayer;
 
@@ -20,7 +21,7 @@ MediaPlayer mediaPlayer;
     @Override
     public void onCreate() {
         super.onCreate();
-        mediaPlayer=MediaPlayer.create(this, R.raw.sound);
+        mediaPlayer=MediaPlayer.create(getBaseContext(), R.raw.sound);
 
     }
 

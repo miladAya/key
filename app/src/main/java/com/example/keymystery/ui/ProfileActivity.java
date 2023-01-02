@@ -3,6 +3,7 @@ package com.example.keymystery.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.keymystery.R;
+import com.example.keymystery.database.Question;
 import com.example.keymystery.database.User;
 import com.example.keymystery.database.ViewModel;
 import com.example.keymystery.databinding.ActivityProfileBinding;
@@ -23,12 +25,13 @@ import com.hbb20.CountryCodePicker;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity implements ActionListener {
 ActivityProfileBinding binding;
    ViewModel viewModel;
 
-String  userName;
+    String  userName;
     private int years;
 
     @Override
@@ -36,6 +39,8 @@ String  userName;
         super.onCreate(savedInstanceState);
         binding=ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel=new ViewModelProvider(this).get(ViewModel.class);
+
         setSupportActionBar(binding.Tb);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -43,10 +48,23 @@ String  userName;
             actionBar.setTitle(R.string.your_account);
 
         }
+        if (viewModel.getAllUsersData()!=null){
+           viewModel.getAllUsersData().observe(this, new Observer<List<User>>() {
+               @Override
+               public void onChanged(List<User> users) {
+                   for (int i = 0; i < users.size(); i++) {
+                       User user=users.get(i);
+                       binding.nameUser.setText(user.getUserName());
+                       binding.emailUser.setText(user.getEmail());
+                       binding.birthDateUser.setText(user.getBirthDate());
+
+                   }
+               }
+           });
+        }
 
 
 
-        viewModel=new ViewModelProvider(this).get(ViewModel.class);
 
 
 
@@ -135,8 +153,15 @@ String  userName;
 
     @Override
     public void onBackPressed() {
-        insertData();
-        finish();
+        if (binding.nameUser!=null&& binding.emailUser!=null &&binding.emailUser!=null &&
+                binding.countryUser!=null &&binding.birthDateUser!=null & binding.group!=null){
+            insertData();
+            finish();
+        }
+        else{
+            Toast.makeText(this, "There is an empty field", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

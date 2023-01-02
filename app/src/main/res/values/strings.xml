@@ -39,6 +39,10 @@
     <string name="save">SAVE</string>
     <string name="cancel">CANCEL</string>
     <string name="your_email">Your email</string>
+    <string name="skip">Skip</string>
+    <string name="yes">true</string>
+    <string name="no">false</string>
+    <string name="Continue">___ Continue ___</string>
     <string-array name="countries">
         <item>Not displayed</item>
         <item>Palestine</item>

@@ -15,4 +15,6 @@ public interface UserDao {
 
     @Query("select * from User")
     LiveData<List<User>>getAllUsersData();
+
+
 }

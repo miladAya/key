@@ -10,11 +10,13 @@ import androidx.room.TypeConverters;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Level.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, Question.class,Levels.class}, version = 26, exportSchema = false)
 abstract class DataBase extends RoomDatabase {
 
     public abstract UserDao userDao();
-    public abstract LevelDao levelDao();
+    public abstract LevelsDao levelsDao();
+    public abstract QuestionDao questionDao();
+
 
 
     private static volatile DataBase INSTANCE;

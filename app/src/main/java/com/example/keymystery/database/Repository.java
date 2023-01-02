@@ -4,21 +4,22 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.List;
 
 public class Repository {
   private   UserDao userDao;
-  private LevelDao levelDao;
-
-
+  private   LevelsDao levelsDao;
+  private  QuestionDao questionDao;
 
     Repository( Application application) {
         DataBase database = DataBase.getDatabase(application);
         userDao = database.userDao();
-//        levelDao=database.levelDao();
-        levelDao=database.levelDao();
+        questionDao=database.questionDao();
+        levelsDao=database.levelsDao();
+
     }
 
     void insertUser(User user) {
@@ -34,21 +35,35 @@ public class Repository {
         return userDao.getAllUsersData();
     }
 
-
-
-    LiveData<List<Level>> getAllLevelData(){
-        return  levelDao.getAllLevelsData();
-    }
-   public void insertLevelData(Level level){
+    void  insertLevels (Levels levels){
         DataBase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                levelDao.insertLevel(level);
+                levelsDao.insertLevels(levels);
             }
         });
+    }
+
+    LiveData<List<Levels>> getAllLevelsData(){
+        return levelsDao.getAllLevelsData();
+
+    }
+
+
+               void insertQuestion(Question question){
+                  DataBase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                questionDao.insertQuestion(question);
+            }
+        });
+       }
+       LiveData<List<Question>> getAllQuestionsData(){
+         return questionDao.getAllQuestionsData();
+       }
 
 
 
     }
 
-}
+

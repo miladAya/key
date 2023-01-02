@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.TorF_Fragment"
-    android:background="@color/yalow">
+    tools:context=".ui.TorF_Fragment">
 
     <TextView
         android:id="@+id/questionTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_50sdp"
+        android:textColor="@color/black"
         android:textSize="@dimen/_30sdp"
-        android:textColor="@color/white"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RadioGroup
         android:id="@+id/group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_40sdp"
-        android:layout_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
         android:layout_marginTop="@dimen/_40sdp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/questionTv">
 
 
@@ -33,23 +32,56 @@
             android:id="@+id/yes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:buttonTint="@color/white"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:backgroundTint="@color/black"
+            android:buttonTint="@color/black"
             android:paddingStart="@dimen/_20sdp"
+            android:text="@string/yes"
 
-            android:backgroundTint="@color/white"
-            android:text="YES" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp" />
 
         <RadioButton
             android:id="@+id/no"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="@dimen/_20sdp"
+            android:buttonTint="@color/black"
             android:paddingStart="@dimen/_20sdp"
-            android:text="NO"
-            android:buttonTint="@color/white"
-            />
+            android:text="@string/no"
+            android:textSize="@dimen/_20sdp" />
     </RadioGroup>
+
+<!--    <TextView-->
+<!--        android:id="@+id/skip"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_50sdp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/skip"-->
+<!--        android:textSize="@dimen/_20ssp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/group" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/continueTv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_50sdp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/Continue"-->
+<!--        android:textSize="@dimen/_20ssp"-->
+
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/group" />-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="@dimen/_5sdp"-->
+<!--        android:layout_marginTop="@dimen/_200sdp"-->
+<!--        android:max="100"-->
+<!--        android:progress="100"-->
+<!--        android:progressDrawable="@drawable/custom_progres_bar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,12 +24,21 @@ public class ViewModel extends AndroidViewModel {
         return repository.getAllUsersData();
     }
 
-    LiveData<List<Level>> getAllLevelData(){
-        return  repository.getAllLevelData();
+   public void  insertLevels (Levels levels){
+                repository.insertLevels(levels);
+
     }
-    public void insertLevelData(Level level) {
-        repository.insertLevelData(level);
+  public   LiveData<List<Levels>> getAllLevelsData(){
+        return repository.getAllLevelsData();
+
     }
 
+
+   public void insertQuestion(Question question){
+      repository.insertQuestion(question);
+    }
+    public LiveData<List<Question>> getAllQuestionsData(){
+        return repository.getAllQuestionsData();
+    }
 
     }

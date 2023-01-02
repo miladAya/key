@@ -82,7 +82,6 @@ app:layout_constraintTop_toBottomOf="@id/account"
         app:useMaterialThemeColors="true"
         android:textSize="@dimen/_20sdp"
         android:checked="true"
-        android:clickable="true"
         android:button="@drawable/sound"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
@@ -108,6 +107,7 @@ app:layout_constraintTop_toBottomOf="@id/soundSw"
         />
 
 <TextView
+    android:id="@+id/reset"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toBottomOf="@id/notificationSw"

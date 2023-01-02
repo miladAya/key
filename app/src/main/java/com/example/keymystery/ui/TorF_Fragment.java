@@ -1,14 +1,27 @@
 package com.example.keymystery.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.keymystery.R;
+import com.example.keymystery.database.Question;
+import com.example.keymystery.database.ViewModel;
+import com.example.keymystery.databinding.FragmentTorFBinding;
+import com.example.keymystery.model.SendID;
+import com.example.keymystery.model.SendScore;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,34 +29,43 @@ import com.example.keymystery.R;
  * create an instance of this fragment.
  */
 public class TorF_Fragment extends Fragment {
+    ViewModel viewModel;
+    SendScore sendScore;
+    SendID sendId;
+    CountDownTimer countDownTimer;
 
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_LEVEL_NUM = "levelsNum";
+    private static final String ARG_PATTERN_NAME = "patternName";
+    private static final String ARG_SCORE = "score";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private int mLevelsNum;
+    private String mPatternName;
+    private int mScore;
+    //private int questionNum;
+
 
     public TorF_Fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TorF_Fragment.
-     */
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        sendScore= (SendScore) context;
+        sendId= (SendID) context;
+
+    }
+
     // TODO: Rename and change types and number of parameters
-    public static TorF_Fragment newInstance(String param1, String param2) {
+    public static TorF_Fragment newInstance(int  levelsNo ,String pattern_name ,int score) {
         TorF_Fragment fragment = new TorF_Fragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_LEVEL_NUM, levelsNo);
+        args.putString(ARG_PATTERN_NAME, pattern_name);
+        args.putInt(ARG_SCORE, score);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,8 +74,10 @@ public class TorF_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mLevelsNum = getArguments().getInt(ARG_LEVEL_NUM);
+            mPatternName = getArguments().getString(ARG_PATTERN_NAME);
+            mScore = getArguments().getInt(ARG_SCORE);
+
         }
     }
 
@@ -61,6 +85,70 @@ public class TorF_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tor_f_, container, false);
+        FragmentTorFBinding binding=FragmentTorFBinding.inflate(inflater,container,false);
+        viewModel=new ViewModelProvider(getActivity()).get(ViewModel.class);
+
+        viewModel.getAllQuestionsData().observe(getActivity(), new Observer<List<Question>>() {
+            @Override
+            public void onChanged(List<Question> questions) {
+                for (int i = 0; i < questions.size(); i++) {
+                    if (questions.get(i).getLevel_no() == mLevelsNum && (questions.get(i).getPattern_name()
+                            .equals(mPatternName))) {
+                        Question question = questions.get(i);
+                        for (int j = 0; j < question.getIdQ(); j++) {
+                            Question question1= questions.get(j);
+                            //question1.getDuration();
+                            Log.d("aaa","a"+ question1.getDuration());
+                        }
+                        binding.questionTv.setText(question.getTitle());
+                        Log.d("aha", String.valueOf(question.getId()));
+                        sendId.sendID((int) question.getId());
+
+                        binding.no.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (question.getTrue_answer().toString().contains(getString(R.string.no))){
+                                  trueAnswer(question.getPoints());
+                                }
+                                else{
+                            falseAnswer(question.getHint());
+                                }
+                            }
+                        });
+
+
+                        binding.yes.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (question.getTrue_answer().toString().contains(getString(R.string.yes))){
+                                 trueAnswer(question.getPoints());
+                                 Log.d("as","aa"+ question.getPoints());
+
+                                }
+
+                                else{
+                                falseAnswer(question.getHint());
+                                }
+                            }
+                        });
+
+                    }
+                    }
+
+
+            }
+        });
+        return  binding.getRoot();
     }
-}
+    private void falseAnswer(String hint) {
+        FalseAnswerFragment fragment= FalseAnswerFragment.newInstance(hint);
+        fragment.show(getActivity().getSupportFragmentManager(), "f");
+    }
+
+    private void trueAnswer(int point) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .add(new TrueAnswerFragment(), "a").commit();
+        mScore = mScore + point;
+        sendScore.sendScore(mScore);
+
+    }}

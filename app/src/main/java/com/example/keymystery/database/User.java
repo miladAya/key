@@ -8,11 +8,11 @@ import androidx.room.TypeConverters;
 import java.util.Date;
 
 @Entity
-
 public class User {
+    @PrimaryKey(autoGenerate = true)
+            int id;
     String userName;
-@NonNull
-@PrimaryKey
+
     String email;
     boolean gender;
     String country;

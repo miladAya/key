@@ -25,6 +25,10 @@
 
     <string name="your_email">بريدك الالكتروني</string>
     <string name="cancel">الغاء</string>
+    <string name="skip">تخطي</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="Continue">___ انقر للمتابعه ___</string>
     <string-array name="countries">
         <item>غير محدد</item>
         <item>فلسطين</item>
