@@ -40,5 +40,11 @@ public class ViewModel extends AndroidViewModel {
     public LiveData<List<Question>> getAllQuestionsData(){
         return repository.getAllQuestionsData();
     }
+    public void  deleteUser (User user){
+   repository.deleteUser(user);
+    }
+    public void  deleteQuestion (Question question){
+      repository.deleteQuestion(question);
+    }
 
     }

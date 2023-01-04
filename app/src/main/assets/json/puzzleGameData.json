@@ -10,7 +10,7 @@
 				"answer_4": "",
 				"true_answer": "false",
 				"points": 3,
-				"duration": 1500,
+				"duration": 1000,
 				"pattern": {
 					"pattern_id": 1,
 					"pattern_name": "True of False"

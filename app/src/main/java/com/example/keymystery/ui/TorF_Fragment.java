@@ -1,6 +1,7 @@
 package com.example.keymystery.ui;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,17 +9,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.keymystery.R;
 import com.example.keymystery.database.Question;
 import com.example.keymystery.database.ViewModel;
 import com.example.keymystery.databinding.FragmentTorFBinding;
-import com.example.keymystery.model.SendID;
 import com.example.keymystery.model.SendScore;
 
 import java.util.List;
@@ -31,8 +31,7 @@ import java.util.List;
 public class TorF_Fragment extends Fragment {
     ViewModel viewModel;
     SendScore sendScore;
-    SendID sendId;
-    CountDownTimer countDownTimer;
+    MediaPlayer mediaPlayer;
 
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_LEVEL_NUM = "levelsNum";
@@ -43,7 +42,6 @@ public class TorF_Fragment extends Fragment {
     private int mLevelsNum;
     private String mPatternName;
     private int mScore;
-    //private int questionNum;
 
 
     public TorF_Fragment() {
@@ -54,8 +52,6 @@ public class TorF_Fragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         sendScore= (SendScore) context;
-        sendId= (SendID) context;
-
     }
 
     // TODO: Rename and change types and number of parameters
@@ -87,7 +83,6 @@ public class TorF_Fragment extends Fragment {
         // Inflate the layout for this fragment
         FragmentTorFBinding binding=FragmentTorFBinding.inflate(inflater,container,false);
         viewModel=new ViewModelProvider(getActivity()).get(ViewModel.class);
-
         viewModel.getAllQuestionsData().observe(getActivity(), new Observer<List<Question>>() {
             @Override
             public void onChanged(List<Question> questions) {
@@ -95,20 +90,14 @@ public class TorF_Fragment extends Fragment {
                     if (questions.get(i).getLevel_no() == mLevelsNum && (questions.get(i).getPattern_name()
                             .equals(mPatternName))) {
                         Question question = questions.get(i);
-                        for (int j = 0; j < question.getIdQ(); j++) {
-                            Question question1= questions.get(j);
-                            //question1.getDuration();
-                            Log.d("aaa","a"+ question1.getDuration());
-                        }
-                        binding.questionTv.setText(question.getTitle());
-                        Log.d("aha", String.valueOf(question.getId()));
-                        sendId.sendID((int) question.getId());
+                        //binding.questionTv.setText(question.getTitle());
+                        binding.questionTv.setText(String.valueOf(question.getId()) +  ".  "  +  question.getTitle());
 
                         binding.no.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(getString(R.string.no))){
-                                  trueAnswer(question.getPoints());
+                                  trueAnswer(question.getTrue_answer());
                                 }
                                 else{
                             falseAnswer(question.getHint());
@@ -121,9 +110,7 @@ public class TorF_Fragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(getString(R.string.yes))){
-                                 trueAnswer(question.getPoints());
-                                 Log.d("as","aa"+ question.getPoints());
-
+                                 trueAnswer(question.getTrue_answer());
                                 }
 
                                 else{
@@ -143,12 +130,16 @@ public class TorF_Fragment extends Fragment {
     private void falseAnswer(String hint) {
         FalseAnswerFragment fragment= FalseAnswerFragment.newInstance(hint);
         fragment.show(getActivity().getSupportFragmentManager(), "f");
+      mediaPlayer=  MediaPlayer.create(getActivity(),R.raw.false_answer);
+        mediaPlayer.start();
     }
 
-    private void trueAnswer(int point) {
+    private void trueAnswer(String trueAnswer) {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .add(new TrueAnswerFragment(), "a").commit();
-        mScore = mScore + point;
-        sendScore.sendScore(mScore);
+        mScore = mScore + 1;
+        sendScore.sendScore(mScore,trueAnswer);
+        mediaPlayer=  MediaPlayer.create(getActivity(),R.raw.true_answer);
+        mediaPlayer.start();
 
     }}

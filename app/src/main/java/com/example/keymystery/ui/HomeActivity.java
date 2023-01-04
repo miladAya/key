@@ -85,7 +85,7 @@ ViewModel viewModel;
                         String answer_4=jsonLevelOne.getString("answer_4");
                         String true_answer=jsonLevelOne.getString("true_answer");
                         int points=jsonLevelOne.getInt("points");
-                        Long duration=jsonLevelOne.getLong("duration");
+                        long duration=jsonLevelOne.getLong("duration");
                         JSONObject pattern=   jsonLevelOne.getJSONObject("pattern");
                         int pattern_id =  pattern.getInt("pattern_id");
                         String  pattern_name=pattern.getString("pattern_name");

@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.keymystery.R;
@@ -33,6 +36,8 @@ ActivityProfileBinding binding;
 
     String  userName;
     private int years;
+    String  gender;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ ActivityProfileBinding binding;
 
 
 
-
+email=binding.emailUser.getText().toString();
 
 
      binding.birthDateLout.setOnClickListener(new View.OnClickListener() {
@@ -116,12 +121,30 @@ ActivityProfileBinding binding;
            insertData();
        }
    });
-
+       int selectedId= binding.group.getCheckedRadioButtonId();
+            binding.group.setTextAlignment(selectedId);
+        Log.d("TAG", "onCreate: " );
 
     }
 
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton:
+                if (checked)
+                    gender="male";
+
+                    break;
+            case R.id.radioButton4:
+                if (checked)
+                    gender="female";
+                    break;
+        }
+    }
 
     public boolean validateEmail(String emil){
         if (Patterns.EMAIL_ADDRESS.matcher(emil).matches()){
@@ -132,10 +155,11 @@ ActivityProfileBinding binding;
         }}
 
 
+
     private void insertData() {
         String userName =binding.nameUser.getText().toString();
         String userEmail =binding.emailUser.getText().toString();
-        Boolean userGender =Boolean.parseBoolean(binding.nameUser.getText().toString());
+        Boolean userGender =Boolean.parseBoolean(gender);
         String userCountry =binding.countryUser.getSelectedItem().toString();
         String userBirth =binding.birthDateUser.getText().toString();
         User user=new User(userName,userEmail,userGender,userCountry,userBirth);
@@ -153,15 +177,30 @@ ActivityProfileBinding binding;
 
     @Override
     public void onBackPressed() {
-        if (binding.nameUser!=null&& binding.emailUser!=null &&binding.emailUser!=null &&
-                binding.countryUser!=null &&binding.birthDateUser!=null & binding.group!=null){
+            saveData();
+
+    }
+
+    private void saveData() {
+        String emailUser=  binding.emailUser.getText().toString();
+        String nameUser=  binding.nameUser.getText().toString();
+        String birthDataUser=  binding.birthDateUser.getText().toString();
+
+       if (emailUser.isEmpty()){
+            binding.emailUser.setError("you should enter the Email");
+
+        }
+        else if (nameUser.isEmpty()){
+            binding.nameUser.setError("you should enter the  Name");
+
+        }
+        else if (!validateEmail(emailUser)){
+            binding.emailUser.setError("Invalid Email");
+        }
+        else {
             insertData();
             finish();
         }
-        else{
-            Toast.makeText(this, "There is an empty field", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     @Override
@@ -169,17 +208,25 @@ ActivityProfileBinding binding;
         binding.emailUser.setText(email);
 
     }
+
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case android.R.id.home:
-                insertData();
-                finish();
+                saveData();
 
-                return true;
-        }
-        return super.onOptionsItemSelected(item);}
+
+            case  R.id.playerRecord:
+                Intent intent2=new Intent(ProfileActivity.this,PlayerRecordActivity.class);
+                startActivity(intent2);
+
+            return true;
+
+        }return false;
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
         return true;
     }
 

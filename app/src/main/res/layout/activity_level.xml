@@ -52,27 +52,29 @@ android:drawablePadding="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         app:layout_constraintTop_toBottomOf="@id/TL"/>
     <TextView
         android:id="@+id/skip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
         android:text="@string/skip"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintTop_toBottomOf="@id/VP" />
 
     <TextView
         android:id="@+id/continueTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center"
         android:text="@string/Continue"
-        android:textSize="@dimen/_20ssp"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/VP" />
+        android:textSize="@dimen/_15ssp"
+        android:visibility="visible"
+
+        app:layout_constraintTop_toBottomOf="@id/skip" />
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"

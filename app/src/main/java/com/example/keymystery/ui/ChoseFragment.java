@@ -1,6 +1,7 @@
 package com.example.keymystery.ui;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.keymystery.R;
 import com.example.keymystery.database.Question;
 import com.example.keymystery.database.ViewModel;
 import com.example.keymystery.databinding.FragmentChoseBinding;
@@ -30,6 +32,7 @@ public class ChoseFragment extends Fragment {
     ViewModel viewModel;
     Question question;
     SendScore sendScore;
+    MediaPlayer mediaPlayer;
 
 
     private static final String ARG_LEVEL_NUM = "levelsNum";
@@ -85,21 +88,20 @@ public class ChoseFragment extends Fragment {
                             .equals(mPatternName))) {
                         Log.d("aha", String.valueOf(mLevelsNum));
                          question = questions.get(i);
-                        binding.questionTv.setText(String.valueOf(question.getIdQ()) +  ".  "  +  question.getTitle());
+                        binding.questionTv.setText(String.valueOf(question.getId()) +  ".  "  +  question.getTitle());
                         binding.answer1.setText(question.getAnswer_1());
                         binding.answer2.setText(question.getAnswer_2());
                         binding.answer3.setText(question.getAnswer_3());
                         binding.answer4.setText(question.getAnswer_4());
-                        String bbb =question.getAnswer_1().toString();
-                        String cc =question.getHint().toString();
-                        Log.d("bar","bbb" +   "           " +  bbb);
-                        Log.d("car","cc" +    "           "  +    cc);
+//                        String bbb =question.getAnswer_1().toString();
+//                        String cc =question.getHint().toString();
+//                        Log.d("bar","bbb" +   "           " +  bbb);
+//                        Log.d("car","cc" +    "           "  +    cc);
                         binding.answer1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(question.getAnswer_1().toString())){
-                                    trueAnswer(question.getPoints());
-
+                                    trueAnswer(question.getTrue_answer());
                                 }
 
                                 else{
@@ -115,7 +117,7 @@ public class ChoseFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(question.getAnswer_2().toString())){
-                                    trueAnswer(question.getPoints());
+                                    trueAnswer(question.getTrue_answer());
                                 }
                                 else{
 
@@ -127,7 +129,7 @@ public class ChoseFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(question.getAnswer_3().toString())){
-                                    trueAnswer(question.getPoints());
+                                    trueAnswer(question.getTrue_answer());
                                 }
                                 else{
                                     falseAnswer();
@@ -139,7 +141,7 @@ public class ChoseFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 if (question.getTrue_answer().toString().contains(question.getAnswer_4().toString())){
-                                    trueAnswer(question.getPoints());
+                                    trueAnswer(question.getTrue_answer());
                                 }
                                 else{
                                     falseAnswer();
@@ -156,15 +158,19 @@ public class ChoseFragment extends Fragment {
     private void falseAnswer() {
         FalseAnswerFragment fragment= FalseAnswerFragment.newInstance(question.getHint());
         fragment.show(getActivity().getSupportFragmentManager(), "f");
+        mediaPlayer=  MediaPlayer.create(getActivity(),R.raw.false_answer);
+        mediaPlayer.start();
 
     }
 
-    private void trueAnswer(int point) {
+    private void trueAnswer(String trueAnswer) {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .add(new TrueAnswerFragment(),"a").commit();
-     mScore=mScore+point;
+     mScore=mScore+2;
         Log.d("nunu", "trueAnswer:  " +mScore);
-        sendScore.sendScore(mScore);
+        sendScore.sendScore(mScore,trueAnswer);
+        mediaPlayer=  MediaPlayer.create(getActivity(), R.raw.true_answer);
+        mediaPlayer.start();
     }
 
 }

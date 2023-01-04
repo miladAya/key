@@ -30,16 +30,33 @@ public class Repository {
             }
         });
     }
-
+    void  deleteUser (User user){
+        DataBase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userDao.deleteUser(user);
+            }
+        });
+    }
     LiveData<List<User>> getAllUsersData(){
         return userDao.getAllUsersData();
     }
+
 
     void  insertLevels (Levels levels){
         DataBase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 levelsDao.insertLevels(levels);
+            }
+        });
+
+    }
+    void  deleteQuestion (Question question){
+        DataBase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                questionDao.deleteQuestion(question);
             }
         });
     }

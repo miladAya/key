@@ -62,13 +62,7 @@ public class TrueAnswerFragment extends DialogFragment {
                 dismiss();
             }
         });
-        binding.continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        });
         return binding.getRoot();
     }
     @Override

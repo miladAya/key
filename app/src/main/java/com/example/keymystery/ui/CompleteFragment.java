@@ -1,6 +1,7 @@
 package com.example.keymystery.ui;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class CompleteFragment extends Fragment {
     ViewModel viewModel;
     Question question;
     SendScore sendScore;
+    MediaPlayer mediaPlayer;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_LEVEL_NUM = "levelsNum";
@@ -85,14 +87,15 @@ public class CompleteFragment extends Fragment {
                             .equals(mPatternName))) {
                         Log.d("aha", String.valueOf(mLevelsNum));
                         Question question = questions.get(i);
-                        binding.questionTv.setText(question.getTitle());
+                        //binding.questionTv.setText(question.getTitle());
+                        binding.questionTv.setText(String.valueOf(question.getId()) +  ".  "  +  question.getTitle());
 
                     binding.saveBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             binding.saveBtn.setVisibility(View.INVISIBLE);
                             if (question.getTrue_answer().toString().contains(binding.answer.getText().toString())){
-                                trueAnswer(question.getPoints());
+                                trueAnswer(question.getTrue_answer());
 
                             }
 
@@ -113,13 +116,17 @@ public class CompleteFragment extends Fragment {
     private void falseAnswer() {
         FalseAnswerFragment fragment= FalseAnswerFragment.newInstance(question.getHint());
         fragment.show(getActivity().getSupportFragmentManager(), "f");
+        mediaPlayer=  MediaPlayer.create(getActivity(),R.raw.false_answer);
+        mediaPlayer.start();
     }
 
-    private void trueAnswer(int point) {
+    private void trueAnswer(String trueAnswer) {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .add(new TrueAnswerFragment(),"a").commit();
-        mScore=mScore+point;
-        sendScore.sendScore(mScore);
+        mScore=mScore+5;
+        sendScore.sendScore(mScore,trueAnswer);
+        mediaPlayer=  MediaPlayer.create(getActivity(),R.raw.true_answer);
+        mediaPlayer.start();
 
     }
 }

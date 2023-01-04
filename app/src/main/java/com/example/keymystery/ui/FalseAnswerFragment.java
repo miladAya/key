@@ -58,13 +58,7 @@ public class FalseAnswerFragment extends DialogFragment {
                 dismiss();
             }
         });
-        binding.continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        });
         binding.correctTv.setText(mCorrectAnswer);
         return binding.getRoot();
     }

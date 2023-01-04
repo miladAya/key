@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/backgroun_record.xml" value="0.1445" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/background.xml" value="0.1505" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/background_img.xml" value="0.1445" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/button.xml" value="0.2545" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/button_record.xml" value="0.1445" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/correct_answer.xml" value="0.205" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/custom_dialog.xml" value="0.205" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/custom_item.xml" value="0.1505" />
@@ -27,8 +30,10 @@
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/ic_score.xml" value="0.2555" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/ic_sound_off.xml" value="0.179" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/ic_sound_on.xml" value="0.2555" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/ic_user.xml" value="0.1445" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/icon.xml" value="0.1425" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/notification.xml" value="0.19" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/record_player.xml" value="0.1445" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/selector_dot_tab.xml" value="0.128" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/sound.xml" value="0.179" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/drawable/toolbar.xml" value="0.19" />
@@ -37,12 +42,15 @@
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_leavels.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_level.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_levels.xml" value="0.25" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_player_record.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_profile.xml" value="0.2" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_record.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_splach.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/custom_item.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/custom_levels_item.xml" value="0.21164021164021163" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/custom_player_record.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_chose.xml" value="0.25" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_complete.xml" value="0.2359375" />
@@ -52,6 +60,7 @@
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_tor_f_.xml" value="0.2359375" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_true.xml" value="0.2359375" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/menu/menu.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/menu/my_menu.xml" value="0.13178294573643412" />
         <entry key="..\:/Users/aya/AndroidStudioProjects/KeyMystery/app/src/main/res/xml/root_preferences.xml" value="0.4" />
       </map>
