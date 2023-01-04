@@ -1,28 +1,21 @@
 package com.example.keymystery.ui;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.Preference;
-
-import android.app.ActivityManager;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.keymystery.R;
 import com.example.keymystery.database.Question;
@@ -32,7 +25,6 @@ import com.example.keymystery.databinding.ActivitySettingsBinding;
 import com.example.keymystery.model.JobService;
 
 import java.util.List;
-import java.util.prefs.Preferences;
 
 public class SettingsActivity extends AppCompatActivity {
 ActivitySettingsBinding binding;
@@ -50,7 +42,7 @@ MediaPlayer mediaPlayer;
         super.onCreate(savedInstanceState);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        edit=getSharedPreferences("switch",MODE_PRIVATE).edit();
+        edit=getSharedPreferences("Date_user",MODE_PRIVATE).edit();
 
         setSupportActionBar(binding.Tb);
         ActionBar actionBar = getSupportActionBar();
@@ -108,18 +100,12 @@ MediaPlayer mediaPlayer;
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     if (compoundButton.isChecked()) {
-
                         edit.putBoolean("switchStatus" ,true);
-                        binding.soundSw.setChecked(true);
-
                         edit.commit();
 
                     } else  {
                         edit.putBoolean("switchStatus" ,false);
-                        binding.soundSw.setChecked(false);
                         edit.commit();
-
-
 
                     }
                 }

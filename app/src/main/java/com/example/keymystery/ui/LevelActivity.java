@@ -10,21 +10,18 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import com.erif.CountDown.CountDown;
-import com.erif.CountDown.CountDownListener;
-import com.erif.CountDown.Times;
+
 import com.example.keymystery.Adapters.LevelFragmentAdapter;
 import com.example.keymystery.R;
 import com.example.keymystery.database.Question;
 import com.example.keymystery.database.ViewModel;
 import com.example.keymystery.databinding.ActivityLevelBinding;
-import com.example.keymystery.model.InterfaceTimer;
 import com.example.keymystery.model.SendScore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LevelActivity extends AppCompatActivity implements SendScore, InterfaceTimer {
+public class LevelActivity extends AppCompatActivity implements SendScore {
     ActivityLevelBinding binding;
     ViewModel viewModel;
     int qustionID;
@@ -54,7 +51,7 @@ public class LevelActivity extends AppCompatActivity implements SendScore, Inter
         intent = new Intent(LevelActivity.this, SoundService.class);
         switchON = R.id.soundSw;
         Intent intent1 = getIntent();
-        boolean switchChecked = intent1.getBooleanExtra("switch_on", true);
+        boolean switchChecked = sp.getBoolean("switchStatus", true);
         if (switchChecked == true) {
             startService(intent);
 
@@ -211,18 +208,6 @@ public class LevelActivity extends AppCompatActivity implements SendScore, Inter
     }
 
 
-    @Override
-    public void endTime() {
-        binding.skip.setVisibility(View.INVISIBLE);
-        binding.continueTv.setVisibility(View.VISIBLE);
-        binding.progressBar.setProgress(100);
-    }
-
-    @Override
-    public void onUpdate(int timer, int millis) {
-        binding.progressBar.setProgress(millis);
-
-    }
 }
 
 

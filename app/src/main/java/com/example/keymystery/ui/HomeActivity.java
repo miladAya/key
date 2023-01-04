@@ -1,15 +1,14 @@
 package com.example.keymystery.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.keymystery.R;
-//import com.example.keymystery.database.Question;
 import com.example.keymystery.database.Levels;
 import com.example.keymystery.database.Question;
 import com.example.keymystery.database.ViewModel;
