@@ -3,17 +3,15 @@ package com.example.keymystery.ui;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.keymystery.R;
 import com.example.keymystery.database.Question;
@@ -36,10 +34,12 @@ public class ChoseFragment extends Fragment {
 
 
     private static final String ARG_LEVEL_NUM = "levelsNum";
-   private static final String ARG_PATTERN_NAME = "patternName";
-   private static final String ARG_SCORE = "score";
+    private static final String ARG_PATTERN_NAME = "patternName";
+    private static final String ARG_SCORE = "score";
+    private static final String QUESTION = "question";
 
     private int mLevelsNum;
+    private int question_id;
     private String mPatternName;
     private int mScore;
 
@@ -55,12 +55,13 @@ public class ChoseFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static ChoseFragment newInstance(int  levelsNo ,String pattern_name, int score) {
+    public static ChoseFragment newInstance(int levelsNo, String pattern_name, int score, int question_id) {
         ChoseFragment fragment = new ChoseFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_LEVEL_NUM, levelsNo);
         args.putString(ARG_PATTERN_NAME, pattern_name);
         args.putInt(ARG_SCORE, score);
+        args.putInt(QUESTION, question_id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,6 +73,7 @@ public class ChoseFragment extends Fragment {
             mLevelsNum = getArguments().getInt(ARG_LEVEL_NUM);
             mPatternName = getArguments().getString(ARG_PATTERN_NAME);
             mScore = getArguments().getInt(ARG_SCORE);
+            question_id = getArguments().getInt(QUESTION);
         }
     }
 
@@ -87,12 +89,19 @@ public class ChoseFragment extends Fragment {
                     if (questions.get(i).getLevel_no() == mLevelsNum && (questions.get(i).getPattern_name()
                             .equals(mPatternName))) {
                         Log.d("aha", String.valueOf(mLevelsNum));
-                         question = questions.get(i);
-                        binding.questionTv.setText(String.valueOf(question.getId()) +  ".  "  +  question.getTitle());
-                        binding.answer1.setText(question.getAnswer_1());
-                        binding.answer2.setText(question.getAnswer_2());
-                        binding.answer3.setText(question.getAnswer_3());
-                        binding.answer4.setText(question.getAnswer_4());
+
+                        Log.d("TAG", "onChangedqqwe: " + questions.get(i).getId());
+                        Log.d("TAG", "onChangedasdas: " + question_id);
+
+                        if (questions.get(i).getId() == question_id) {
+                            question = questions.get(i);
+                            binding.questionTv.setText(String.valueOf(question.getId()) + ".  " + question.getTitle());
+                            binding.answer1.setText(question.getAnswer_1());
+                            binding.answer2.setText(question.getAnswer_2());
+                            binding.answer3.setText(question.getAnswer_3());
+                            binding.answer4.setText(question.getAnswer_4());
+                        }
+
 //                        String bbb =question.getAnswer_1().toString();
 //                        String cc =question.getHint().toString();
 //                        Log.d("bar","bbb" +   "           " +  bbb);
